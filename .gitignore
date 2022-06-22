@@ -1,0 +1,11 @@
+.vs/
+Common/bin/
+Common/obj/
+Core/bin/
+Core/obj/
+Data/bin/
+Data/obj/
+Test.Api/bin/
+Test.Api/obj/
+Testing/bin/
+Testing/obj/
