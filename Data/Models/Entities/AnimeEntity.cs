@@ -6,5 +6,7 @@
     public class AnimeEntity : EntityBase
     {
         public string Name { get; set; }
+
+        public string[] Personajes { get; set; }
     }
 }

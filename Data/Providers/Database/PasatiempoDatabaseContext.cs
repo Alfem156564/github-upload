@@ -31,5 +31,14 @@
                         .UseSqlServer(x => x.MigrationsHistoryTable("_PasatiempoMigrationsHistory", "Pasatiempo"));
             }
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AnimeEntity>()
+            .Property(e => e.Personajes)
+            .HasConversion(
+                v => string.Join(',', v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+        }
     }
 }
