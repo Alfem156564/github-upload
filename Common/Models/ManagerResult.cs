@@ -8,6 +8,8 @@
 
         public static ManagerResult<T> FromError(ErrorCodes errorCode) => new ManagerResult<T> { DidSucceed = false, ErrorCode = errorCode };
 
+        public static ManagerResult<T> FromErrorValue(object errorValue) => new ManagerResult<T> { DidSucceed = false, ErrorValue = errorValue };
+
         public T Value { get; set; }
 
         public string ErrorMessage { get; set; }
@@ -15,5 +17,7 @@
         public ErrorCodes ErrorCode { get; set; }
 
         public bool DidSucceed { get; set; }
+
+        public object? ErrorValue { get; set; }
     }
 }
