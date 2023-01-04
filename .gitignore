@@ -5,7 +5,5 @@ Core/bin/
 Core/obj/
 Data/bin/
 Data/obj/
-Test.Api/bin/
-Test.Api/obj/
-Testing/bin/
-Testing/obj/
+TestAzure.Api/bin/
+TestAzure.Api/obj/
