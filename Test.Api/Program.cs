@@ -16,6 +16,8 @@ builder.Services.AddDbContext<IDatabaseContext, DatabaseContext>(options =>
 builder.Services.AddDbContext<PasatiempoDatabaseContext>();
 builder.Services.AddScoped<IUserTypeAccessServices, UserTypeAccessServices>();
 builder.Services.AddScoped<IUserTypeManager, UserTypeManager>();
+builder.Services.AddScoped<IExcelManager, ExcelManager>();
+System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
 
 var app = builder.Build();
