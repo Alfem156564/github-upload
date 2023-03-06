@@ -7,3 +7,5 @@ Data/bin/
 Data/obj/
 TestAzure.Api/bin/
 TestAzure.Api/obj/
+/Testing
+/Test.Api
