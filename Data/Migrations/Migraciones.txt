@@ -1,0 +1,11 @@
+//Agregar migracion Campos nuevos tablas nuevas modificaciones tablas
+dotnet ef migrations add [NombreMigracion] --context DatabaseContext --project Data
+
+//Actualizar la base de datos, solo funciona si tienes permisos sobre el servidor
+dotnet ef database update --context DatabaseContext --project Data
+
+//Birrar la ultima migracion solo si no se ha actualizado en la base de datos, si no hay que hacer un update a la migracion anterior
+dotnet ef migrations remove --context DatabaseContext --project Data
+
+//Generar los scripts de las migracione spara correrlos directamente en SQL
+dotnet ef migrations script -i --context DatabaseContext --project Data
