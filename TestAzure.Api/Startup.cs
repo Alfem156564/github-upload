@@ -11,6 +11,9 @@ namespace TestAzure.Api
     using Data.AccessServices;
     using Core.Contracts;
     using Core.Managers;
+    using TestAzure.Api.Definition.Error;
+    using TestAzure.Api.Functions.Graphql.Type;
+    using TestAzure.Api.Functions.Graphql;
 
     public class Startup : FunctionsStartup
     {
@@ -24,7 +27,24 @@ namespace TestAzure.Api
         public override void Configure(IFunctionsHostBuilder builder)
         {
             builder.Services
-                .AddSingleton(x => configuration);
+                .AddSingleton(x => configuration)
+                .AddGraphQLFunction()
+                .AddType<OfferType>()
+                .AddQueryType<Query>()
+                .AddMutationType<Mutation>()
+                .AddErrorFilter(error => {
+                    if (error.Exception is ApiException)
+                    {
+                        var apiException = (ApiException)error.Exception;
+                        return error
+                            .WithCode(apiException.ErrorCode.ToString())
+                            .WithMessage(apiException.ErrorMessage)
+                            .RemoveExtensions()
+                            .RemoveLocations();
+                    }
+
+                    return error;
+                }); ;
 
             AddDataProviders(builder.Services);
             AddDataAccessService(builder.Services);
@@ -35,12 +55,17 @@ namespace TestAzure.Api
         {
             services
                 .AddDbContext<IDatabaseContext, DatabaseContext>(options =>
+                    options.UseSqlServer(configuration.DatabaseConnectionString))
+                .AddDbContext<GraphDatabaseContext>(options =>
                     options.UseSqlServer(configuration.DatabaseConnectionString));
         }
 
         private void AddDataAccessService(IServiceCollection services)
         {
             services
+                .AddScoped<ICertificatesCounterOfferDataAccessService, CertificatesCounterOfferDataAccessService>()
+                .AddScoped<ICertificatesOfferAccessService, CertificatesOfferAccessService>()
+                .AddScoped<IEnergyOfferAccessService, EnergyOfferAccessService>()
                 .AddScoped<IUserTypeAccessServices, UserTypeAccessServices>();
         }
 
