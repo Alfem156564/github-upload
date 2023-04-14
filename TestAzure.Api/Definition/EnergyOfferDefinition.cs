@@ -32,6 +32,9 @@ namespace TestAzure.Api.Definition
         public string System { get; set; }
 
         [JsonProperty]
+        public string Description { get; set; }
+
+        [JsonProperty]
         public DateTime Date { get; set; }
 
         [JsonProperty]

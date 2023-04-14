@@ -31,6 +31,7 @@ namespace Data.Contracts
            int quantity,
            string regionalControlCenter,
            string system,
+            string description,
            DateTime date,
            Guid createdBy);
         Task<List<EnergyOffer>> GetEnergyOffersByUser(Guid createdBy);

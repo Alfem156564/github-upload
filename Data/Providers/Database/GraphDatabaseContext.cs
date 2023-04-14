@@ -19,7 +19,7 @@
         {
         }
 
-        public GraphDatabaseContext(DbContextOptions<DatabaseContext> options)
+        public GraphDatabaseContext(DbContextOptions<GraphDatabaseContext> options)
        : base(options)
         { }
 

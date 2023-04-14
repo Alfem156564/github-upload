@@ -70,6 +70,7 @@ namespace TestAzure.Api.Functions.Graphql
                     energyOfferDefinition.Quantity,
                     energyOfferDefinition.RegionalControlCenter,
                     energyOfferDefinition.System,
+                    energyOfferDefinition.Description,
                     energyOfferDefinition.Date,
                     userId)
                 .ConfigureAwait(false);

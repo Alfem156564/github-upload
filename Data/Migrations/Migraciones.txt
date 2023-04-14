@@ -9,3 +9,34 @@ dotnet ef migrations remove --context DatabaseContext --project Data
 
 //Generar los scripts de las migracione spara correrlos directamente en SQL
 dotnet ef migrations script -i --context DatabaseContext --project Data
+
+
+//GRAPHEXAMPLE
+mutation ($request: EnergyOfferDefinitionInput){
+    createEnergyOffer (energyOfferDefinition: $request){
+        id
+        country
+        system
+        regionalControlCenter
+        loadingZone
+        nodeId
+        quantity
+        pricePerUnit
+        date
+        description
+    }
+}
+
+{
+  "request": {
+    "country": "Aguascalientes",
+    "system": "sithec",
+    "regionalControlCenter": "sithec",
+    "loadingZone": "sithec",
+    "nodeId": "sithec",
+    "quantity": 1,
+    "pricePerUnit": 1,
+    "date": "2022-01-01",
+    "description": "description"
+  }
+}

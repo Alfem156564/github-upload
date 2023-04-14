@@ -119,6 +119,7 @@ namespace Data.AccessServices
             int quantity,
             string regionalControlCenter,
             string system,
+            string description,
             DateTime date,
             Guid createdBy)
         {
@@ -135,16 +136,24 @@ namespace Data.AccessServices
                 Quantity = quantity,
                 RegionalControlCenter = regionalControlCenter,
                 System = system,
+                Description = description,
                 Date = date,
             };
 
-            await databaseContext.EnergyOffers
+            try
+            {
+                await databaseContext.EnergyOffers
                 .AddAsync(energyOffer)
                 .ConfigureAwait(false);
 
-            await databaseContext
-                .SaveChangesAsync()
-                .ConfigureAwait(false);
+                await databaseContext
+                    .SaveChangesAsync()
+                    .ConfigureAwait(false);
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
 
             return energyOffer
                 .ToEnergyOffer();
