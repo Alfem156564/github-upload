@@ -4,6 +4,7 @@ using Data.Providers.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations.PasatiempoDatabase
 {
     [DbContext(typeof(PasatiempoDatabaseContext))]
-    partial class PasatiempoDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230418183000_spCatalogoDestino")]
+    partial class spCatalogoDestino
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,7 +81,7 @@ namespace Data.Migrations.PasatiempoDatabase
                     b.Property<bool>("bitActivo")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("dtmFechaElimina")
+                    b.Property<DateTime>("dtmFechaElimina")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("dtmFechaRegistro")
@@ -94,23 +96,12 @@ namespace Data.Migrations.PasatiempoDatabase
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("vchUsuarioElimina")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("intTipoCatalogoDestinoKey");
 
                     b.ToTable("CatalogoDestino", "TES");
-                });
-
-            modelBuilder.Entity("Data.Models.GenericResult", b =>
-                {
-                    b.Property<int>("intRetVal")
-                        .HasColumnType("int");
-
-                    b.Property<string>("vchErrorMessage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToView("TES.prTESMantenimientoCatalogoDestino");
                 });
 #pragma warning restore 612, 618
         }

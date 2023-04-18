@@ -4,6 +4,7 @@ using Data.Providers.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations.PasatiempoDatabase
 {
     [DbContext(typeof(PasatiempoDatabaseContext))]
-    partial class PasatiempoDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230418193704_NullValuesCatalogoDestino")]
+    partial class NullValuesCatalogoDestino
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

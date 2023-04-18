@@ -57,6 +57,8 @@ namespace TestAzure.Api
                 .AddDbContext<IDatabaseContext, DatabaseContext>(options =>
                     options.UseSqlServer(configuration.DatabaseConnectionString))
                 .AddDbContext<GraphDatabaseContext>(options =>
+                    options.UseSqlServer(configuration.DatabaseConnectionString))
+                .AddDbContext<PasatiempoDatabaseContext>(options =>
                     options.UseSqlServer(configuration.DatabaseConnectionString));
         }
 
@@ -66,7 +68,8 @@ namespace TestAzure.Api
                 .AddScoped<ICertificatesCounterOfferDataAccessService, CertificatesCounterOfferDataAccessService>()
                 .AddScoped<ICertificatesOfferAccessService, CertificatesOfferAccessService>()
                 .AddScoped<IEnergyOfferAccessService, EnergyOfferAccessService>()
-                .AddScoped<IUserTypeAccessServices, UserTypeAccessServices>();
+                .AddScoped<IUserTypeAccessServices, UserTypeAccessServices>()
+                .AddScoped<ICatalogoDestinoAccessServices, CatalogoDestinoAccessServices>();
         }
 
         private void AddManagers(IServiceCollection services)

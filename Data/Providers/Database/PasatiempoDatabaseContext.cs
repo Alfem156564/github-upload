@@ -1,5 +1,6 @@
 ﻿namespace Data.Providers.Database
 {
+    using Data.Models;
     using Data.Models.Entities;
     using Microsoft.EntityFrameworkCore;
 
@@ -7,11 +8,15 @@
     {
         public DbSet<AnimeEntity> Anime { get; set; }
 
+        public DbSet<CatalogoDestinoEntity> Catalogos { get; set; }
+
+        public virtual DbSet<GenericResult> SP_TESMantenimientoCatalogoDestino { get; set; }
+
         public PasatiempoDatabaseContext()
         {
         }
 
-        public PasatiempoDatabaseContext(DbContextOptions<DatabaseContext> options)
+        public PasatiempoDatabaseContext(DbContextOptions<PasatiempoDatabaseContext> options)
        : base(options)
         { }
 
@@ -22,7 +27,7 @@
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder
-                    .UseSqlServer("Server=DESARROLLO-ALAN\\DESARROLLOSITHEC;Database=test-db;User Id=sa;Password=black;", 
+                    .UseSqlServer("Server=SITEC30008\\DESARROLLOSITHEC;Database=test-db;User Id=sa;Password=black;", 
                         x => x.MigrationsHistoryTable("_PasatiempoMigrationsHistory", "Pasatiempo"));
             }
             else
@@ -34,6 +39,8 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<GenericResult>().HasNoKey().ToView("TES.prTESMantenimientoCatalogoDestino");
+
             modelBuilder.Entity<AnimeEntity>()
             .Property(e => e.Personajes)
             .HasConversion(
