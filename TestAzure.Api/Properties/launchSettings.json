@@ -1,9 +1,24 @@
 {
   "profiles": {
-    "TestAzure.Api": {
+    "DEV": {
       "commandName": "Project",
       "commandLineArgs": "--port 7105",
-      "launchBrowser": false
+      "launchBrowser": false,
+      "environmentVariables": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "DefaultConnection": "Server=SITEC30008\\DESARROLLOSITHEC;Database=test-db;User Id=sa;Password=black;"
+      }
+    },
+    "DEV2": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7105",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "DefaultConnection": "Server=SITEC30008\\DESARROLLOSITHEC;Database=test-db;User Id=sa;Password=black;"
+      }
     }
   }
 }
