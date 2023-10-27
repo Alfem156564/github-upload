@@ -7,7 +7,7 @@
       "environmentVariables": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-        "DefaultConnection": "Server=SITEC30008\\DESARROLLOSITHEC;Database=test-db;User Id=sa;Password=black;"
+        "DefaultConnection": "Server=USER-PC\\ALFEM;Database=test-db;User Id=sa;Password=black;"
       }
     },
     "DEV2": {
@@ -17,7 +17,7 @@
       "environmentVariables": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-        "DefaultConnection": "Server=SITEC30008\\DESARROLLOSITHEC;Database=test-db;User Id=sa;Password=black;"
+        "DefaultConnection": "Server=USER-PC\\ALFEM;Database=test-db;User Id=sa;Password=black;"
       }
     }
   }

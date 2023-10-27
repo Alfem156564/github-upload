@@ -10,7 +10,7 @@
     {
 
         #region UserType
-        public static IActionResult GetUserTypeIdValidation(string userTypeId)
+        public static void GetUserTypeIdValidation(string userTypeId)
         {
             var validator = new Validator<string>(userTypeId)
                 .AddBadRequestValidation(request =>
@@ -18,10 +18,10 @@
                     ErrorCodes.InvalidUserTypeId,
                     "El id del tipo usuario no puede ser nulo o vacio");
 
-            return validator.Validate();
+            validator.Validate();
         }
 
-        public static IActionResult GetUserTypeNullValidation(UserTypeEntity request, string id)
+        public static void GetUserTypeNullValidation(UserTypeEntity request, string id)
         {
             var validator = new Validator<UserTypeEntity>(request)
                 .AddBadRequestValidation(request =>
@@ -29,10 +29,10 @@
                     ErrorCodes.InvalidUserTypeRequest,
                     $"El tipo usuario con id {id} no existe");
 
-            return validator.Validate();
+            validator.Validate();
         }
 
-        public static IActionResult GetUserTypeValidation(UserTypeDefinition request)
+        public static void GetUserTypeValidation(UserTypeDefinition request)
         {
             var validator = new Validator<UserTypeDefinition>(request)
                 .AddBadRequestValidation(request =>
@@ -44,10 +44,10 @@
                     ErrorCodes.InvalidUserTypeName,
                     "El nombre del tipo usuario no puede ser null o vacio");
 
-            return validator.Validate();
+            validator.Validate();
         }
 
-        public static IActionResult CreateUserTypesValidation(ManagerResult<UserTypeEntity> result,
+        public static void CreateUserTypesValidation(ManagerResult<UserTypeEntity> result,
             string userTypeName,
             string userTypeId)
         {
@@ -67,10 +67,8 @@
                                     ErrorCodes.Unknown,
                                     "Error inesperado");
 
-                return validator.Validate();
+                validator.Validate();
             }
-            return null;
-
         }
         #endregion
     }

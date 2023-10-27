@@ -57,26 +57,16 @@ namespace TestAzure.Api.Functions
                 Route = ApiRoutes.TipoUsuarioUsuarioId)] HttpRequest request,
             string id)
         {
-            var validation = ValidationHelpers
+            ValidationHelpers
                 .GetUserTypeIdValidation(id);
-
-            if (validation != null)
-            {
-                return validation;
-            }
 
             var userType = _userTypeManager
                 .GetUserTypeById(id);
 
 
-            validation = ValidationHelpers
+            ValidationHelpers
                .GetUserTypeNullValidation(userType,
                id);
-
-            if (validation != null)
-            {
-                return validation;
-            }
 
             return new OkObjectResult(userType
                 .ToDefinition());
@@ -93,26 +83,16 @@ namespace TestAzure.Api.Functions
             .GetRequestBodyAsync<UserTypeDefinition>()
             .ConfigureAwait(continueOnCapturedContext: false);
 
-            var validation = ValidationHelpers
+            ValidationHelpers
                 .GetUserTypeValidation(userTypeDefinition);
-
-            if (validation != null)
-            {
-                return validation;
-            }
 
             var userType = await _userTypeManager
                 .CreateUserTypeAsync(userTypeDefinition.Name, "system");
 
-            validation = ValidationHelpers
+            ValidationHelpers
                .CreateUserTypesValidation(userType,
                userTypeDefinition.Name,
                null);
-
-            if (validation != null)
-            {
-                return validation;
-            }
 
             return new OkObjectResult(userType.Value
                 .ToDefinition());
@@ -130,34 +110,19 @@ namespace TestAzure.Api.Functions
             .GetRequestBodyAsync<UserTypeDefinition>()
             .ConfigureAwait(continueOnCapturedContext: false);
 
-            var validation = ValidationHelpers
+            ValidationHelpers
                 .GetUserTypeIdValidation(id);
 
-            if (validation != null)
-            {
-                return validation;
-            }
-
-            validation = ValidationHelpers
+            ValidationHelpers
                 .GetUserTypeValidation(userTypeDefinition);
-
-            if (validation != null)
-            {
-                return validation;
-            }
 
             var userType = await _userTypeManager
                 .UpdateUserTypeAsync(id, "system", userTypeDefinition.Name);
 
-            validation = ValidationHelpers
+            ValidationHelpers
                .CreateUserTypesValidation(userType,
                userTypeDefinition.Name,
                id);
-
-            if (validation != null)
-            {
-                return validation;
-            }
 
             return new OkObjectResult(userType.Value
                 .ToDefinition());
@@ -171,26 +136,16 @@ namespace TestAzure.Api.Functions
                 Route = ApiRoutes.TipoUsuarioUsuarioId)] HttpRequest request,
             string id)
         {
-            var validation = ValidationHelpers
+            ValidationHelpers
                 .GetUserTypeIdValidation(id);
-
-            if (validation != null)
-            {
-                return validation;
-            }
 
             var userType = await _userTypeManager
                 .DisabledUserTypeAsync(id, "system");
 
-            validation = ValidationHelpers
+            ValidationHelpers
                .CreateUserTypesValidation(userType,
                null,
                id);
-
-            if (validation != null)
-            {
-                return validation;
-            }
 
             return new OkObjectResult(userType.Value
                 .ToDefinition());

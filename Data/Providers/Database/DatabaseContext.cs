@@ -23,7 +23,7 @@
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder
-                    .UseSqlServer("Server=SITEC30008\\DESARROLLOSITHEC;Database=test-db;User Id=sa;Password=black;");
+                    .UseSqlServer("Server=USER-PC\\ALFEM;Database=test-db;User Id=sa;Password=black;");
             }
         }
     }
